@@ -139,11 +139,11 @@ nnoremap z5 :set foldlevel=5<cr>
 
 " Plug plugin manager {{{
 call plug#begin("~/.config/nvim/plugged")
-Plug 'gmarik/Vundle.vim'
 " Plug 'scrooloose/syntastic'
 Plug 'wincent/command-t'
 " orgmode
 Plug 'jceb/vim-orgmode'
+" tpope is the dope
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
@@ -153,7 +153,7 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim' killed by unite
 Plug 'rking/ag.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'davidhalter/jedi-vim'
@@ -174,6 +174,10 @@ Plug 'sickill/vim-monokai'
 Plug 'tweekmonster/braceless.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'pearofducks/ansible-vim'
+" Unite
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite-session'
 call plug#end()
 "}}}
 
