@@ -175,6 +175,7 @@ Plug 'pearofducks/ansible-vim'
 " Unite
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite-session'
@@ -221,6 +222,7 @@ noremap  <leader>g :GitGutterToggle<CR>
 " }}}
 
 " CtrlP {{{
+" REMOVE once unite is good
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.gz,*.xz,*.bz2,protractor*.xml,karma*.xml,*.egg,*.log,*.rpm,*.deb
 let g:ctrlp_custom_ignore = {'dir': '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|virt_.*|.*egg-info|data|log|biolark)'}
@@ -231,7 +233,7 @@ let g:ctrlp_custom_ignore = {'dir': '\v[\/](\.git|\.hg|\.svn|bower_components|no
 
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>l :<C-u>Unite buffer history/yank file file_rec file_mru<cr>
+nnoremap <leader>l :<C-u>Unite buffer history/yank file file_rec/async file_mru<cr>
 "nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
