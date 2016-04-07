@@ -140,7 +140,6 @@ nnoremap z5 :set foldlevel=5<cr>
 " Plug plugin manager {{{
 call plug#begin("~/.config/nvim/plugged")
 " Plug 'scrooloose/syntastic'
-Plug 'wincent/command-t'
 " orgmode
 Plug 'jceb/vim-orgmode'
 " tpope is the dope
@@ -153,7 +152,6 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdtree'
-"Plug 'kien/ctrlp.vim' killed by unite
 Plug 'rking/ag.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'davidhalter/jedi-vim'
@@ -175,9 +173,14 @@ Plug 'tweekmonster/braceless.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'pearofducks/ansible-vim'
 " Unite
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite-session'
+" killed by unite
+"Plug 'kien/ctrlp.vim' 
+"Plug 'wincent/command-t'
 call plug#end()
 "}}}
 
@@ -223,6 +226,32 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.gz,*.
 let g:ctrlp_custom_ignore = {'dir': '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|virt_.*|.*egg-info|data|log|biolark)'}
 "}}}
 
+" Unite {{{
+" http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
+
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>l :<C-u>Unite buffer history/yank file file_rec file_mru<cr>
+"nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+" }}}
+
 " Syntastic {{{
 " syntaxic n00b defaults for me
 " set statusline+=%#warningmsg#
@@ -244,7 +273,7 @@ let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 filetype plugin indent on
 colorscheme Monokai
 
-" here be all the leader keys
+" more leaders 
 nnoremap <leader>w :w<CR>
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
