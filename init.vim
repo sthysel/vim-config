@@ -221,7 +221,6 @@ let NERDTreeMouseMode=2 " Use a single click to fold/unfold directories and a do
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__', '\.DS_Store' ]
 " }}}
 
-
 " Unite {{{
 
 
