@@ -147,6 +147,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'szw/vim-maximizer'
 Plug 'airblade/vim-gitgutter'
 Plug 'ekalinin/Dockerfile.vim'
 " Plug 'majutsushi/tagbar'
@@ -170,15 +172,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sickill/vim-monokai'
 Plug 'tweekmonster/braceless.vim'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
 Plug 'pearofducks/ansible-vim'
 " Unite
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite-session'
+
+Plug '~/playpen/vim-spacemacs'
 " killed by unite
 "Plug 'kien/ctrlp.vim' 
 "Plug 'wincent/command-t'
@@ -217,39 +221,10 @@ let NERDTreeMouseMode=2 " Use a single click to fold/unfold directories and a do
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__', '\.DS_Store' ]
 " }}}
 
-" GitGutter {{{
-noremap  <LEADER>g :GitGutterToggle<CR>
-" }}}
-
-" CtrlP {{{
-" REMOVE once unite is good
-
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.gz,*.xz,*.bz2,protractor*.xml,karma*.xml,*.egg,*.log,*.rpm,*.deb
-let g:ctrlp_custom_ignore = {'dir': '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|virt_.*|.*egg-info|data|log|biolark)'}
-"}}}
 
 " Unite {{{
-" http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
 
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <LEADER>ll :<C-u>Unite buffer history/yank file file_rec/async file_mru<cr>
-nnoremap <LEADER>lt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <LEADER>lf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <LEADER>lr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <LEADER>lo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <LEADER>ly :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <LEADER>lb :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Play nice with supertab
-  let b:SuperTabDisabled=1
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
 
 " }}}
 
@@ -274,22 +249,6 @@ let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 filetype plugin indent on
 colorscheme Monokai
 
-" more leaders 
-nnoremap <LEADER>w :w<CR>
-" Toggle show/hide invisible chars
-nnoremap <LEADER>i :set list!<cr>
-" Toggle line numbers
-nnoremap <LEADER>N :setlocal number!<cr>
-
-" grep/Ack/Ag for the word under cursor
-vnoremap <LEADER>a y:grep! "\b<c-r>"\b"<cr>:cw<cr>
-nnoremap <LEADER>a :grep! "\b<c-r><c-w>\b"
-nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
-
-" Creating folds for tags in HTML
-nnoremap <LEADER>ft Vatzf
-
-
 " use python/perl regex, not vim build-in
 nnoremap / /\v
 vnoremap / /\v
@@ -297,7 +256,6 @@ vnoremap / /\v
 " Use Q for formatting the current paragraph (or visual selection)
 vnoremap Q gq
 nnoremap Q gqap
-
 
 " non patronising positive enforcement
 nnoremap <Left> :echoe "No sunshine, use h"<CR>
