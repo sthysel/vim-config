@@ -196,15 +196,15 @@ let g:airline_theme='badwolf'
 let g:buffergator_viewport_split_policy = 'R' " Use the right side of the screen
 let g:buffergator_suppress_keymaps = 1
 let g:buffergator_mru_cycle_loop = 1
-nmap <leader>jj :BuffergatorMruCyclePrev<cr> " Go to the previous buffer open
-nmap <leader>kk :BuffergatorMruCycleNext<cr> " Go to the next buffer open
-nmap <leader>bl :BuffergatorOpen<cr> " View the entire list of buffers open
+nmap <LEADER>jj :BuffergatorMruCyclePrev<cr> " Go to the previous buffer open
+nmap <LEADER>kk :BuffergatorMruCycleNext<cr> " Go to the next buffer open
+nmap <LEADER>bl :BuffergatorOpen<cr> " View the entire list of buffers open
 " }}}
 
 " NERDTree {{{
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
-nnoremap <leader>N :NERDTreeClose<CR>
+nnoremap <LEADER>n :NERDTreeFocus<CR>
+nnoremap <LEADER>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+nnoremap <LEADER>N :NERDTreeClose<CR>
 
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")  " Store the bookmarks file
 let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
@@ -218,7 +218,7 @@ let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$
 " }}}
 
 " GitGutter {{{
-noremap  <leader>g :GitGutterToggle<CR>
+noremap  <LEADER>g :GitGutterToggle<CR>
 " }}}
 
 " CtrlP {{{
@@ -233,14 +233,13 @@ let g:ctrlp_custom_ignore = {'dir': '\v[\/](\.git|\.hg|\.svn|bower_components|no
 
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>l :<C-u>Unite buffer history/yank file file_rec/async file_mru<cr>
-"nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <LEADER>ll :<C-u>Unite buffer history/yank file file_rec/async file_mru<cr>
+nnoremap <LEADER>lt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <LEADER>lf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <LEADER>lr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <LEADER>lo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <LEADER>ly :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <LEADER>lb :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -276,24 +275,20 @@ filetype plugin indent on
 colorscheme Monokai
 
 " more leaders 
-nnoremap <leader>w :w<CR>
+nnoremap <LEADER>w :w<CR>
 " Toggle show/hide invisible chars
-nnoremap <leader>i :set list!<cr>
+nnoremap <LEADER>i :set list!<cr>
 " Toggle line numbers
-nnoremap <leader>N :setlocal number!<cr>
+nnoremap <LEADER>N :setlocal number!<cr>
 
 " grep/Ack/Ag for the word under cursor
-vnoremap <leader>a y:grep! "\b<c-r>"\b"<cr>:cw<cr>
-nnoremap <leader>a :grep! "\b<c-r><c-w>\b"
+vnoremap <LEADER>a y:grep! "\b<c-r>"\b"<cr>:cw<cr>
+nnoremap <LEADER>a :grep! "\b<c-r><c-w>\b"
 nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
 
 " Creating folds for tags in HTML
-nnoremap <leader>ft Vatzf
+nnoremap <LEADER>ft Vatzf
 
-" edit vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-" load the vimrc file
-nmap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " use python/perl regex, not vim build-in
 nnoremap / /\v
