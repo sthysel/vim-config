@@ -102,41 +102,6 @@ if has('syntax') && !exists('g:syntax_on')
 endif
 "}}}
 
-" Folding rules {{{
-set foldenable                  " enable folding
-set foldcolumn=2                " add a fold column
-set foldmethod=marker           " detect triple-{ style fold markers
-set foldlevelstart=0            " start out with everything folded
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-                                " which commands trigger auto-unfold
-
-" this is nicer than the default foldtext, I think
-function! MyFoldText()
-    let line=getline(v:foldstart)
-
-    let nucolwidth=&fdc + &number * &numberwidth
-    let windowwidth=winwidth(0) - nucolwidth - 3
-    let foldedlinecount=v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab=strpart('          ', 0, &tabstop)
-    let line=substitute(line, '\t', onetab, 'g')
-
-    let line=strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount=windowwidth - len(line) - len(foldedlinecount) - 4
-    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction
-set foldtext=MyFoldText()
-
-" Mappings to easily toggle fold levels
-nnoremap z0 :set foldlevel=0<cr>
-nnoremap z1 :set foldlevel=1<cr>
-nnoremap z2 :set foldlevel=2<cr>
-nnoremap z3 :set foldlevel=3<cr>
-nnoremap z4 :set foldlevel=4<cr>
-nnoremap z5 :set foldlevel=5<cr>
-" }}}
-
 " Plug plugin manager {{{
 call plug#begin("~/.config/nvim/plugged")
 " Plug 'scrooloose/syntastic'
@@ -181,13 +146,49 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite-session'
-
-Plug '~/playpen/vim-spacemacs'
-" killed by unite
-"Plug 'kien/ctrlp.vim' 
-"Plug 'wincent/command-t'
+" Washed all spacemacs-esque leaders into my own plugin
+Plug 'sthysel/vim-spacemacs'
 call plug#end()
 "}}}
+
+" Folding rules {{{
+set foldenable                  " enable folding
+set foldcolumn=2                " add a fold column
+set foldmethod=marker           " detect triple-{ style fold markers
+set foldlevelstart=0            " start out with everything folded
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+                                " which commands trigger auto-unfold
+
+" this is nicer than the default foldtext, I think
+function! MyFoldText()
+    let line=getline(v:foldstart)
+
+    let nucolwidth=&fdc + &number * &numberwidth
+    let windowwidth=winwidth(0) - nucolwidth - 3
+    let foldedlinecount=v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab=strpart('          ', 0, &tabstop)
+    let line=substitute(line, '\t', onetab, 'g')
+
+    let line=strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount=windowwidth - len(line) - len(foldedlinecount) - 4
+    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunction
+set foldtext=MyFoldText()
+
+" Mappings to easily toggle fold levels
+nnoremap z0 :set foldlevel=0<cr>
+nnoremap z1 :set foldlevel=1<cr>
+nnoremap z2 :set foldlevel=2<cr>
+nnoremap z3 :set foldlevel=3<cr>
+nnoremap z4 :set foldlevel=4<cr>
+nnoremap z5 :set foldlevel=5<cr>
+
+" SimplyFold setup for python
+autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+" }}}
 
 " vim-airline {{{
 let g:airline#extensions#tabline#enabled=1
