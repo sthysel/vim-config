@@ -2,13 +2,18 @@
 
 This is my vimrc repository for neovim.
 
+See (Installing Neovim)[https://github.com/neovim/neovim/wiki/Installing-Neovim]
+
 ## Install
 ```sh
 git clone git@github.com:sthysel/dotvim.git dotvim
 ln -s .config/nvim dotvim
+
+pip install --user -U neovim
+pip3 install --user -U neovim
+
 ```
 
-See (Installing Neovim)[https://github.com/neovim/neovim/wiki/Installing-Neovim]
 
 
 ## History
