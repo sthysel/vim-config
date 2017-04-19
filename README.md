@@ -2,7 +2,7 @@
 
 vimrc repository for neovim.
 
-See [Installing Neovim][https://github.com/neovim/neovim/wiki/Installing-Neovim]
+See [Installing Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 # Install
 ```sh
