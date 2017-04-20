@@ -104,7 +104,7 @@ endif
 
 " Plug plugin manager {{{
 call plug#begin("~/.config/nvim/plugged")
-" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 " orgmode
 Plug 'jceb/vim-orgmode'
 " tpope is the dope
@@ -116,7 +116,6 @@ Plug 'tpope/vim-commentary'
 Plug 'szw/vim-maximizer'
 Plug 'airblade/vim-gitgutter'
 Plug 'ekalinin/Dockerfile.vim'
-" Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
@@ -137,16 +136,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sickill/vim-monokai'
 Plug 'tweekmonster/braceless.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
+" broken in nvim
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
 Plug 'pearofducks/ansible-vim'
 " Unite
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make'}
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/unite-session'
-" Washed all spacemacs-esque leaders into my own plugin
 Plug 'sthysel/vim-spacemacs'
 call plug#end()
 "}}}
@@ -222,29 +218,6 @@ let NERDTreeMouseMode=2 " Use a single click to fold/unfold directories and a do
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__', '\.DS_Store' ]
 " }}}
 
-" Unite {{{
-
-
-
-" }}}
-
-" Syntastic {{{
-" syntaxic n00b defaults for me
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--ignore=E501 --maxcomplexity 10"
-" html tidy does not understand django templates
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-"}}}
 
 filetype plugin indent on
 colorscheme Monokai
@@ -305,8 +278,6 @@ set pastetoggle=<F2>
 let &t_SI="\<Esc>]50;CursorShape=1\x7"
 let &t_EI="\<Esc>]50;CursorShape=0\x7"
 
-" so pymode also does syntax checking and linting but I prefer syntastic
-let g:pymode_lint=0
 
 " Windows, splits
 nnoremap <c-j> <c-w><c-j>
