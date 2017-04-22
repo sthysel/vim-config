@@ -9,10 +9,62 @@
 " This vimrc is both good and original - the original bits are not good
 " and the good bits are not original.
 
+
+" Autoinstall Plug pluginmanager {{{
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+" }}}
+
+call plug#begin('~/.config/nvim/plugged')
+
+" Plug plugin manager {{{
+call plug#begin("~/.config/nvim/plugged")
+Plug 'w0rp/ale'
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'szw/vim-maximizer'
+Plug 'airblade/vim-gitgutter'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'scrooloose/nerdtree'
+Plug 'rking/ag.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'davidhalter/jedi-vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'pangloss/vim-javascript'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'einars/js-beautify'
+Plug 'rstacruz/sparkup'
+Plug 'vim-scripts/closetag.vim'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'tmhedberg/SimpylFold'
+Plug 'chrisbra/csv.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sickill/vim-monokai'
+Plug 'tweekmonster/braceless.vim'
+Plug 'pearofducks/ansible-vim'
+" Unite
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make'}
+Plug 'sthysel/vim-spacemacs'
+call plug#end()
+" }}}
+
+" Settings {{{
 scriptencoding utf-8
 filetype off
 
-" Global settings {{{
 " Use :help 'option' to see the documentation for the given option.
 let mapleader=' '               " space for mapleader
 set showmode                    " always show what mode we're currently editing in
@@ -102,56 +154,11 @@ if has('syntax') && !exists('g:syntax_on')
 endif
 "}}}
 
-" Plug plugin manager {{{
-call plug#begin("~/.config/nvim/plugged")
-Plug 'w0rp/ale'
-" orgmode
-Plug 'jceb/vim-orgmode'
-" tpope is the dope
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-commentary'
-Plug 'szw/vim-maximizer'
-Plug 'airblade/vim-gitgutter'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'scrooloose/nerdtree'
-Plug 'rking/ag.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'davidhalter/jedi-vim'
-Plug 'Chiel92/vim-autoformat'
-Plug 'pangloss/vim-javascript'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'einars/js-beautify'
-Plug 'rstacruz/sparkup'
-Plug 'vim-scripts/closetag.vim'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'tmhedberg/SimpylFold'
-Plug 'chrisbra/csv.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'sickill/vim-monokai'
-Plug 'tweekmonster/braceless.vim'
-" broken in nvim
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
-Plug 'pearofducks/ansible-vim'
-" Unite
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make'}
-Plug 'sthysel/vim-spacemacs'
-call plug#end()
-"}}}
 
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
-set foldlevelstart=0            " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 
