@@ -58,6 +58,8 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make'}
 Plug 'sthysel/vim-spacemacs'
+
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 " }}}
 
